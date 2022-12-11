@@ -14,14 +14,23 @@ int main() {
 	
 	//UDP stuff
 	UDP* udp = new UDP();
-	UDPServer* udpServer = new UDPServer();
-	UDPClient* udpClient = new UDPClient();
+
+	UDPServer* udpServer = new UDPServer("127.0.0.1", 5000);
+
+	UDPClient* udpClient = new UDPClient("127.0.0.1", 5000);
 
 	//TCP stuff
 	//TCP* tcp = new TCP();
 	//TCPServer* tcpServer = new TCPServer();
 	//TCPClient* tcpClient = new TCPClient();
-							  
+
+	while (true) {
+		//First send a message from a client to the server
+		udpClient->Send();
+		//then we want the server to send a message to another server
+		udpServer->Recieve();
+	}
+
 	udp->ShutdownUDP();
 	//tcp->ShutdownTCP();
 	return 0;

@@ -15,14 +15,17 @@ UDP::UDP()
     if (wsaError != 0) {
         Logger::Log("Failed to open WINSOCK");
         return;
-    };
+    }
+    else {
+        Logger::Log("Started WINSOCK");
+    }
     
-  
+    
 }
 
 void UDP::ShutdownUDP()
 {
     //Shutsdown winsock
     WSACleanup();
-    
+    Logger::Log("WINSOCK Shutodwn");
 }

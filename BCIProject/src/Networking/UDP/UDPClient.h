@@ -2,11 +2,14 @@
 class UDPClient {
 public:
 	UDPClient();
-	//UDPClient(ipaddress, port);
+	UDPClient(std::string ip, uint16_t port);
 	void Socket();
 	void Connect();
+
+	void Send();
 private:
-	std::string mIP;
-	uint16_t mPort;
+	//The ip and port we are sending too
+	std::string mIP = "127.0.0.1";
+	uint16_t mPort = 5000;
 	SOCKET mSocket;
 };
