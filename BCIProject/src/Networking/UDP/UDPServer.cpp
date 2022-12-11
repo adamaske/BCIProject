@@ -66,43 +66,6 @@ void UDPServer::Bind()
 
 }
 
-void UDPServer::Listen()
-{
-    //int listen(Socket s, int backlog);
-    //s = the socket to listen to
-    //Backlog the max number of connections allowed(os dependent)
-    //This returns 0 if no errors, else a SOCKET_ERROR is returned, SOMAXCONN is a winsock macro that determines good backlog
-
-    if (listen(mSocket, SOMAXCONN) == SOCKET_ERROR) {
-        Logger::Log("Could not listen");
-    }
-    else {
-        Logger::Log("Server is listening");
-    }
-
-}
-
-void UDPServer::Accept()
-{
-    //The accept function permits an incmoing connection on a socket
-    //SOCKET accept(Socket s, struct sockaddr* addr, int* addrlen);
-    //S = the socket that has been placed in a listening state with the listen function()
-    //addr = optional structure containing the client address information
-    //Addrlen = optional size of the address structure
-    //if no error occurs, accept() returns a value of type SOCKET
-    //that is a descriptor for the new socket that is connected
-    //to the client. The original listening socket can be used to listen for incoming calls.
-    
-    SOCKET acceptSocket;
-    acceptSocket = accept(mSocket, NULL, NULL);
-    if (acceptSocket == INVALID_SOCKET) {
-        Logger::Log("Failed to accept socket");
-    }
-    else {
-        Logger::Log("Accepted socket listening");
-    }
-}
-
 void UDPServer::Send()
 {
     //int sendto(Socket s, const char* buffer, int len, int flags, const struct sockaddr*to, int tolen);
