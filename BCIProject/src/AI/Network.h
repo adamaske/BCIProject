@@ -13,4 +13,5 @@ public:
 	void PrintNetwork();
 private:
 	std::vector<Layer*> mLayers;
+	std::vector<float> mTotalCosts;
 };
