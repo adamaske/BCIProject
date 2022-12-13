@@ -93,6 +93,21 @@ std::vector<float> Network::Output(std::vector<float> input, std::vector<float> 
 	//the weights connected to each of the outputlayer nodes should be corrected
 	//we now have a bunch of differences between the output and the desired output, We can now find the gradient of the decent
 
+	for (auto layer = mLayers.size() - 2; layer >= 0; layer--) {
+		//we now have the last outputs of this layer
+		auto outputs = mLayers[layer]->mOutputs;
+
+		auto zs = mLayers[layer]->mOutputs;
+		auto als = mLayers[layer]->mWeightedOutputs;
+		auto aL = output[0];
+		auto aL1 = outputs[0];
+		auto wL = mLayers[layer]->mWeights[0];
+		//Here we calculate the activation of the output node 0, since we have this function
+		//we can now do derivatives
+		auto al = mLayers[layer]->WeightedSum((aL1 * wL) + mLayers[layer]->mBiases[0]);
+		auto cost = pow(aL - correctOutput[0], 2);
+		//here we can call output[0] a(L), and outputs[0] a(L-1)
+	}
 	return costs;
 }
 

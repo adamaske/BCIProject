@@ -29,11 +29,14 @@ std::vector<float> Layer::Output(std::vector<float> input)
 		}
 		//Subtract the bias for the node
 		activationSum -= mBiases[node];
+
+		//We want the unweighted activation stored for later
+		mOutputs[node] = activationSum;
 		//Add the weighted sum of this node's activation
 		mActivations[node] = WeightedSum(activationSum);
 	}
 
-	mOutputs = mActivations;
+	mWeightedOutputs = mActivations;
 	//All the outputs has now been calculated
 	return mActivations;
 }
@@ -60,4 +63,9 @@ void Layer::PopulateRandom()
 float Layer::WeightedSum(float sum)
 {
 	return tanh(sum);
+}
+
+float Layer::DerivativeWeightedSum(float sum)
+{
+	return 1 - pow(tanh(sum), 2);
 }

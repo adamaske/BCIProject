@@ -14,4 +14,5 @@ public:
 private:
 	std::vector<Layer*> mLayers;
 	std::vector<float> mTotalCosts;
+
 };

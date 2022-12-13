@@ -11,6 +11,7 @@ public:
 	void PopulateRandom();
 
 	float WeightedSum(float sum);
+	float DerivativeWeightedSum(float sum);
 private:
 	std::vector<float> mWeights;
 	std::vector<float> mBiases;
@@ -19,4 +20,5 @@ private:
 	int mConnections;
 	//The last outputs that happend
 	std::vector<float> mOutputs;
+	std::vector<float> mWeightedOutputs;
 };
